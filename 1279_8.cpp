@@ -1,5 +1,4 @@
 #include <iostream>
-#include <vector>
 
 using namespace std;
 
@@ -11,20 +10,18 @@ bool verificaHuluculu(long long int ano){
 }
 int main(){
     long long int ano;
-    vector int resultados; 
     while(cin >> ano){
         cout << endl;
-        if(verificaBissexto(ano)){
+
+        bool bissexto = verificaBissexto(ano);
+        bool huluculu = verificaHuluculu(ano);
+
+        if(bissexto)
             cout << "This is leap year." <<endl;
-            if(verificaHuluculu(ano))
-                cout << "This is Huluculu festival year." <<endl;
-            if(ano%55 == 0)
-                cout << "This is Bulukulu festival year." <<endl;
-        }
-        else if(verificaHuluculu(ano))
+        if(huluculu)
             cout << "This is Huluculu festival year." <<endl;
-        else
-            cout << "This is an ordinary year." <<endl;
+        if(!bissexto && !huluculu)
+            cout << "This is an ordinary year. " <<endl;
     }
     return 0;
 }
