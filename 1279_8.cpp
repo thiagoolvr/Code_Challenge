@@ -1,27 +1,38 @@
 #include <iostream>
+#include <string>
 
 using namespace std;
 
-bool verificaBissexto(long long int ano){
-    return ((ano%4==0 && ano%100!=0) || ano%400==0);
-}
-bool verificaHuluculu(long long int ano){
-    return (ano%15 == 0);
-}
 int main(){
-    long long int ano;
-    while(cin >> ano){
-        cout << endl;
+    long int ano;
+    string ano_str, final_str;
+    bool bissexto;
+    bool primeiraLinha = true;
 
-        bool bissexto = verificaBissexto(ano);
-        bool huluculu = verificaHuluculu(ano);
+    while(cin >> ano_str){
+        if(ano_str.length() > 9){
+            final_str = ano_str.substr(ano_str.length()-9,9);
+            ano = stoi(final_str);
+        }else 
+            ano = stoi(ano_str);
+        
+        if(!primeiraLinha)
+            cout << endl;
 
-        if(bissexto)
-            cout << "This is leap year." <<endl;
-        if(huluculu)
-            cout << "This is Huluculu festival year." <<endl;
-        if(!bissexto && !huluculu)
-            cout << "This is an ordinary year. " <<endl;
+        bissexto = (ano%4==0 && ano%100!=0) || ano%400==0;
+
+        if(bissexto){
+            cout << "This is leap year." << endl;
+            if(ano%15 == 0)
+                cout << "This is huluculu festival year." << endl;
+            if(ano%55 == 0)
+                cout << "This is bulukulu festival year." << endl;
+        }
+        else if(ano%15 == 0)
+            cout << "This is huluculu festival year." << endl;
+        else
+            cout << "This is an ordinary year. " << endl;
+        primeiraLinha = false;
     }
     return 0;
 }
