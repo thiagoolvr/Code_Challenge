@@ -36,11 +36,10 @@ int main(){
     int num;
     for(int i=0; i<numInstances; i++){
         cin >> bin;
-        num = binary(bin);
+        num = stoull(bin,0,2);
         if(num<17)
             cout << setfill('0') << setw(3) << fibo_iterativo(num) << endl;
         else 
             cout << setfill('0') << setw(3) << fibo_direto(num) << endl;
-
     }
 }
