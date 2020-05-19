@@ -10,11 +10,10 @@ int main(){
     int count = 1;
     while(R!=0 && N!=0){
         cout << "Case " << count << ": ";
-        if(N+N*26 > R){
+        if(N+N*26 >= R){
             num = (R - N) / N;
-            if(num<0){
+            if(num<0)
                 num = 0;
-            }
             cout << ceil(num) << endl; 
         }else{
             cout << "impossible" << endl;
