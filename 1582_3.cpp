@@ -3,23 +3,25 @@
 using namespace std;
 
 bool triplaPitagorica(int x, int y, int z){
-    int tripla[3] = {x,y,z};
+    int tripla[3] = {x*x, y*y, z*z};
+    int soma = 0;
+   /* int maior = tripla[0];
     for(int i=0; i<3; i++){
-        int soma = 0;
-        for(int j=0; j<3; j++){
-            soma += (i!=j) ? tripla[j]*tripla[j] : 0;
-        }
-        if(tripla[i]*tripla[i] == soma)
-            return true;
-    }    
-    return false;
+        soma += tripla[i];
+        if(maior < tripla[i])
+            maior = tripla[i];
+    }
+    if(maior == soma - maior)
+        return true;
+    else    
+        return false;*/
+    
 }
 
-int mmc(int x, int y, int z){
+bool mmc(int x, int y, int z){
     int div = 2;
-    int result = 1;
     bool divisorComum;
-    while(x!=1 && y!=1 && z!=1){
+    /*while(x!=1 && y!=1 && z!=1){
         divisorComum = true;
         for(int *ponteiro=&x; ponteiro<=&z; ponteiro++){
             if(*ponteiro % div == 0)
@@ -28,21 +30,36 @@ int mmc(int x, int y, int z){
                 divisorComum = false;
         }
         if(divisorComum)
-            result *= div;
+            return false;
+        else
+            div++;
+    }*/
+    int tripla[] = {x, y, z};
+    while(tripla[0]!=1 && tripla[1]!=1 && tripla[2]!=1){
+        divisorComum = true;
+        for(int i=0; i<3; i++){
+            if(tripla[i] % div == 0)
+                tripla[i] /= div;
+            else 
+                divisorComum = false;
+        }
+        if(divisorComum)
+            return false;
         else
             div++;
     }
-    return result;
+    return true;
 }
 
 int main(){
-    int x, y, z;
+    long int x, y, z;
     while(cin>>x>>y>>z){
-        if(triplaPitagorica(x,y,z) && mmc(x,y,z)==1)
-            cout << "tripla pitagorica primitiva" << endl;
-        else if(triplaPitagorica(x,y,z))
-            cout << "tripla pitagorica" << endl;
-        else 
+        if(triplaPitagorica(x,y,z)){
+            if(mmc(x,y,z))
+                cout << "tripla pitagorica primitiva" << endl;
+            else
+                cout << "tripla pitagorica" << endl;
+        }else 
             cout << "tripla" << endl;
     }
 }
