@@ -18,5 +18,6 @@ int main(){
         }
         cout << decoded << endl;
     }
+    return -1;
 }
 
