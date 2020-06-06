@@ -29,8 +29,8 @@ string ordem_alfabetica(string str1){
     char aux;
     while(!ordenado){
         ordenado = true;
-        for(int i=1; i<3; i++){
-            if(str1[i] < str1[i-1]){
+        for(int i=1; i<str1.length(); i++){
+            if(str1[i-1] > str1[i]){
                 aux = str1[i];
                 str1[i] = str1[i-1];
                 str1[i-1] = aux;
@@ -39,6 +39,32 @@ string ordem_alfabetica(string str1){
         }
     }
     return str1;
+}
+
+string compara_strings(string str1, string str2, string str3){
+    int pos;
+    string check = "";
+    for(int i=0; i<str2.length(); i++){
+        if( check.find(str2[i]) == -1 ){
+            pos = str1.find(str2[i]);
+            if( pos != -1 ){
+                check += str2[i];
+                str1.erase(pos,1);
+            }else 
+                return "CHEATER";
+        }
+    }
+    for(int i=0; i<str3.length(); i++){
+        if( check.find(str3[i]) == -1 ){
+            pos = str1.find(str3[i]);
+            if( pos != -1 ){
+                check += str3[i];
+                str1.erase(pos,1);
+            }else 
+                return "CHEATER";
+        }
+    }
+    return ordem_alfabetica(str1);
 }
 
 int main(){
@@ -51,34 +77,8 @@ int main(){
         getline(cin,str2);
         getline(cin,str3);
         ordena_strings(str1,str2,str3);
-        string check;
-        int pos;
-        for(int i=0; i<str2.length(); i++){
-            pos = str1.find(str2[i]);
-            if( pos != -1){
-                if( check.find(str2[i]) == -1){
-                    check += str2[i];
-                    str1.erase(pos,1);
-                }
-            }else{
-                check = "CHEATER";
-                break;
-            }
-        }
-        for(int i=0; i<str3.length(); i++){
-            pos = str1.find(str3[i]);
-            if( pos != -1){
-                if( check.find(str3[i]) == -1){
-                    check += str3[i];
-                    str1.erase(pos,1);
-                }
-            }else{
-                check = "CHEATER";
-                break;
-            }
-        }
-        str1 = ordem_alfabetica(str1);
-        cout << str1 << endl;
+        //str1 = ordem_alfabetica(str1);
+        cout << compara_strings(str1,str2,str3) << endl;
 
     }
     return 0;
