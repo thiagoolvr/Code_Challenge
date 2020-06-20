@@ -1,6 +1,7 @@
 #include <iostream>
 #include <string>
 #include <vector>
+#include <algorithm>
 
 using namespace std;
 
@@ -49,8 +50,10 @@ void ordena_vetor(vector<string> v){
 }
 
 void todas_substr(string str){
-    vector<string> v; 
+    vector<string> v;
+    string *it;
     string substr;
+
     int length = str.length();
     for(int i=0; i<length; i++){
         v.push_back( str.substr(i,1) );
@@ -60,7 +63,7 @@ void todas_substr(string str){
         for(int i=0; i<length; i++){
             for(int j=i+1; j+n<=length; j++){
                 substr = str[i] + str.substr(j,n);
-                if(v.)
+
                 v.push_back(substr);
             }
         }
@@ -73,6 +76,11 @@ int main(){
     /*while(cin >> str){
         
     }*/
-    str = "aaaaa";
-    todas_substr(str);
+    vector<string> v = {"a","b","c"};
+    vector<int>::iterator it;
+    it = find(v.begin(), v.end(), "b");
+    if(it != v.end())
+        cout << "OK";
+    else 
+        cout << "error";
 }
