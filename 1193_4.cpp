@@ -1,29 +1,19 @@
 #include <iostream>
 #include <math.h>
 #include <string>
+#include <map>
 
 using namespace std;
 
-string convert(string number,int baseType, int baseToConvert){
+map <char,int> hexToDec = {{'a',10}, {'A',10}, {'b',11}, {'B',11}, {'c',12}, {'C',12}, {'d',13}, {'D',13}, {'e',14}, {'E',14}, {'f',15}, {'F',15}};
+
+string convert(string number, int baseType, int baseToConvert){
     unsigned long long int num=0; 
     int aux;
     if(baseType!=10){
         for(int pos=number.length()-1, exp=0; pos>=0; pos--, exp++){
             if( isalpha(number[pos]) ) {
-                switch(number[pos]){
-                    case 'a': aux = 10; break;
-                    case 'A': aux = 10; break;
-                    case 'b': aux = 11; break;
-                    case 'B': aux = 11; break;
-                    case 'c': aux = 12; break;
-                    case 'C': aux = 12; break;
-                    case 'd': aux = 13; break;
-                    case 'D': aux = 13; break;
-                    case 'e': aux = 14; break;
-                    case 'E': aux = 14; break;
-                    case 'f': aux = 15; break;
-                    case 'F': aux = 15; break;
-                }
+                aux = hexToDec[ number[pos] ];
             }else{
                 aux = number[pos] - '0';
             }
